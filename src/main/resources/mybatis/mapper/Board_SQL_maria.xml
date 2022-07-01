@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webboard.boardstudy.mapper.BoardMapper">
+
+    <!-- 게시글 조회 -->
+    <select id="selectBoardList" resultType="com.webboard.boardstudy.DTO.BoardDTO" parameterType="hashMap">
+            SELECT * FROM board
+            WHERE 1=1
+            <include refid="searchPosts"></include>
+            ORDER BY id DESC
+            LIMIT #{pageStart}, #{perPageNum}
+    </select>
+
+    <!-- 게시글 작성 -->
+    <insert id="insertwrite">
+        INSERT INTO board (id, title, content, name, board_date, hit, filename, filepath)
+        VALUES ( #{id}, #{title}, #{content}, #{name}, now(), '0', #{filename}, #{filepath});
+    </insert>
+
+    <!-- 게시글 상세보기 -->
+    <select id="viewBoard" resultType="com.webboard.boardstudy.DTO.BoardDTO">
+        SELECT * FROM board WHERE id = #{id}
+    </select>
+
+    <!-- 게시글 수정 -->
+    <update id="updateBoard">
+        UPDATE board SET title=#{title}, content=#{content}, filename=#{filename}, filepath=#{filepath}
+        WHERE id=#{id}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deleteBoard">
+        DELETE FROM board WHERE id=#{id}
+    </delete>
+
+    <!-- 게시글 조회수 증가 -->
+    <update id="hit">
+        UPDATE board SET hit=hit+1 WHERE id=#{id}
+    </update>
+
+    <!-- 게시글 검색 -->
+    <sql id ="searchPosts">
+        <if test="searchType!=null">
+            <if test="searchType eq 0">
+                AND (title LIKE CONCAT ('%', #{keyword}, '%')
+                OR name LIKE CONCAT ('%', #{keyword}, '%'))
+            </if>
+            <if test="searchType eq 1">
+                AND title LIKE CONCAT ('%', #{keyword}, '%')
+            </if>
+            <if test="searchType eq 2">
+                AND name LIKE CONCAT ('%', #{keyword}, '%')
+            </if>
+        </if>
+    </sql>
+
+    <!--총 게시글 갯수-->
+    <select id="countBoardList" resultType="Integer">
+        SELECT COUNT(id) FROM board
+        WHERE 1=1
+        <include refid="searchPosts"></include>
+    </select>
+
+</mapper>
