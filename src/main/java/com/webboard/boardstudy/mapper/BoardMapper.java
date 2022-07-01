@@ -27,4 +27,5 @@ public interface BoardMapper {
 
     int countBoardList(SearchCriteria cri) throws Exception;
 
+    /*BoardDTO detailBoard(BoardDTO boardDTO) throws Exception;*/
 }

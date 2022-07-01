@@ -90,7 +90,28 @@ public class BoardController {
 
     }
 
-    //게시글 상세보기 폼
+    //게시글 상세보기
+    @RequestMapping("/boardDetail")
+    public String boardDetail(@ModelAttribute("boardDTO") BoardDTO boardDTO, HttpServletRequest request,
+                              Model model, SearchCriteria cri) throws Exception {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        boardDTO.setId(id);
+
+        BoardDTO dto = boardService.viewBoard(boardDTO);
+        model.addAttribute("result", dto);
+
+        //페이징 유지
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCri(cri);
+        model.addAttribute("page", cri.getPage());
+        model.addAttribute("pageMaker", pageMaker);
+
+        return "boardDetail";
+
+    }
+
+    //게시글 수정
     @RequestMapping("/contentForm")
     public String contentForm(/*@RequestParam("id") String id,*/
             @ModelAttribute("boardDTO") BoardDTO boardDTO, HttpServletRequest request,
@@ -114,7 +135,7 @@ public class BoardController {
     //게시글 수정 액션
     @RequestMapping("/updateAction")
     public String updateAction(@ModelAttribute("boardDTO") BoardDTO boardDTO,
-                               HttpServletRequest request, SearchCriteria cri, RedirectAttributes redAttr) throws Exception {
+                               HttpServletRequest request, SearchCriteria cri, RedirectAttributes redAttr, Model model) throws Exception {
 
         // 파일 업로드 처리
         MultipartFile uploadFile = boardDTO.getUploadFile();
@@ -131,11 +152,17 @@ public class BoardController {
         boardService.updateBoard(boardDTO);
 
         //페이징 정보를 리다이렉트 해준다.
-        /*redAttr.addAttribute("page", cri.getPage());
-        redAttr.addAttribute("perPagNum", cri.getPerPageNum());*/
+        redAttr.addAttribute("page", cri.getPage());
+        redAttr.addAttribute("perPagNum", cri.getPerPageNum());
 
         System.out.println("글 수정 성공!");
-        return "redirect:boardList"; //boardList.jsp로 리다이렉트 됨.
+
+
+        BoardDTO dto = boardService.viewBoard(boardDTO);
+        model.addAttribute("result", dto);
+
+        return "boardDetail";
+
 
     }
 

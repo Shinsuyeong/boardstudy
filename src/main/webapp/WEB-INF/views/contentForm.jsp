@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>글 내용</title>
+    <title>글 수정</title>
     <style>
         * {
             /*기본초기화*/
@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-<h2>글 내용</h2>
+<h2>글 수정</h2>
 
 
 <form action="updateAction" method="post" enctype="multipart/form-data">

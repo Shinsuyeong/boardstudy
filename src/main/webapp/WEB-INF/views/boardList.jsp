@@ -70,7 +70,7 @@
                     <td>${BoardDTO.name}</td>
                     <td>
                         <!--변경-->
-                        <a href='<c:url value='/contentForm${pageMaker.makeQueryPage(BoardDTO.id, pageMaker.cri.page)}'/>'>${BoardDTO.title}</a>
+                        <a href='<c:url value='/boardDetail${pageMaker.makeQueryPage(BoardDTO.id, pageMaker.cri.page)}'/>'>${BoardDTO.title}</a>
                     </td>
                     <td>
                         <c:set var="dateVar" value="${BoardDTO.boardDate}" />

@@ -62,4 +62,8 @@
         <include refid="searchPosts"></include>
     </select>
 
+    <!--<select id="detailBoard" resultType="com.webboard.boardstudy.DTO.BoardDTO">
+        SELECT * FROM board WHERE id = #{id}
+    </select>-->
+
 </mapper>
