@@ -116,6 +116,8 @@
         $('#filedown').val(null);
     });*/
 
+
+    /*삭제 메시지*/
     function contentform_check(obj) {
         /*var filedown = document.getElementById("filedown");*/
         var actionType = $(obj).data("type");
