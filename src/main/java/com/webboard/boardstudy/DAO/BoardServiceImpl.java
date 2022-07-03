@@ -48,11 +48,6 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.countBoardList(cri);
     }
 
-    /*@Override
-    public BoardDTO detailBoard(BoardDTO boardDTO) throws Exception {
-        return boardMapper.detailBoard(boardDTO);
-    }*/
-
 }
 
 

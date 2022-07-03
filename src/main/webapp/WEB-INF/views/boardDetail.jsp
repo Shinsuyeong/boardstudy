@@ -34,18 +34,7 @@
         <input type="hidden" name="id" value="${result.id}" />
         <input type="hidden" name="hit" value="${result.hit}" />
         <input type="hidden" name="name" value="${result.name}" />
-        <%--<input type="hidden" name="boardDate" value="${result.boardDate}" />--%>
-        <%--<input type="hidden" name="title" value="${result.title}" />
-        <input type="hidden" name="content" value="${result.content}" />
-        <input type="hidden" name="filepath" value="${result.filepath}" />
-        <input type="hidden" name="filename" value="${result.filename}" />--%>
-        <%--
-        <input type="hidden" name="boardDate" value="${result.boardDate}" />
-        <input type="hidden" name="title" value="${result.title}" />
-        <input type="hidden" name="content" value="${result.content}" />
-        <input type="hidden" name="filepath" value="${result.filepath}" />
-        <input type="hidden" name="filename" value="${result.filename}" />
---%>
+
         <tr>
             <td style="text-align: center">조회수</td>
             <td>${result.hit}</td>
@@ -92,7 +81,6 @@
         <tr>
             <td colspan="2" style="text-align: center" >
                 <a href='<c:url value='/contentForm${pageMaker.makeQueryPage(BoardDTO.id, pageMaker.cri.page)}'/>'><input type="submit" value="수정하기"></a>
-                <%--<a href="boardList"><input type="button" value="목록보기"></a>&nbsp;&nbsp;--%>
                 <a href='<c:url value='/boardList${pageMaker.makeQueryPage(page)}'/>'><input type="button" value="목록보기"></a>
             </td>
         </tr>

@@ -31,16 +31,12 @@
 
 
 <form action="updateAction" method="post" enctype="multipart/form-data">
-    <%--<form action='<c:url value='/updateAction${pageMaker.makeQueryPage(page)}'/>' method="post" enctype="multipart/form-data">--%>
     <table width="500" cellpadding="0" cellspacing="0" border="1">
         <input type="hidden" name="id" value="${result.id}" />
         <input type="hidden" name="hit" value="${result.hit}" />
         <input type="hidden" name="name" value="${result.name}" />
 
-        <%--<tr>
-            <td>번호</td>
-            <td>${result.id}</td> &lt;%&ndash;번호랑 조회수 데이터도 물고 가져가줘야하니까 input을 새로 만들게 아니라 hidden태그를 만들어주면 됌.&ndash;%&gt;
-        </tr>--%>
+
         <tr>
             <td style="text-align: center">조회수</td>
             <td>${result.hit}</td>
@@ -75,9 +71,7 @@
                     <input type="text" id="filedown" value="${result.filename}"
                            name="filename" class="form-control" readonly />
                 </a>
-                <%--<button id="filedelete" type="button" class="btn_previous">파일지우기</button>--%>
                 <button type="button" onclick="javascript:contentform_check(this);" data-type="fileDelete">파일지우기</button>
-                    <%--<button type="button" onclick="javascript:fn_DeleteFile();"><span>삭제</span></button>--%>
         </tr>
         </c:if>
         </tr>
@@ -95,7 +89,6 @@
                 <a href='<c:url value='/boardList${pageMaker.makeQueryPage(page)}'/>'><input type="button" value="목록보기"></a>
                 <%--<a href="deleteAction?id=${result.id}"><input type="button" value="삭제하기">--%>
                 <a href='<c:url value='/deleteAction${pageMaker.makeQueryPage(result.id, page)}'/>'><button type="button" onclick="javascript:contentform_check(this);" data-type="Delete">삭제하기</button></a>
-                <%--<a href='<c:url value='/deleteAction${pageMaker.makeQueryPage(result.id, page)}'/>'><input type="button" value="삭제하기"></a>--%>
             </td>
         </tr>
 

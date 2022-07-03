@@ -64,12 +64,10 @@
             <c:forEach var="BoardDTO" items="${list}" varStatus="status">
                 <tr>
                     <td>
-                        <%--${BoardDTO.id}--%>
                         <c:out value="${pageMaker.totalCount-(((pageMaker.cri.page-1) * pageMaker.cri.perPageNum) + status.index)}" />
                     </td>
                     <td>${BoardDTO.name}</td>
                     <td>
-                        <!--변경-->
                         <a href='<c:url value='/boardDetail${pageMaker.makeQueryPage(BoardDTO.id, pageMaker.cri.page)}'/>'>${BoardDTO.title}</a>
                     </td>
                     <td>
@@ -93,7 +91,6 @@
             <c:if test="${pageMaker.prev}">
                 <li>
                     <!--변경-->
-                    <%--<a href="boardList?page=${pageMaker.startPage-1}"><i class = "fa fa-chevron-left"></i></a>--%>
                     <a href='<c:url value='/boardList${pageMaker.makeQueryPage(pageMaker.startPage-1)}'/>'><i class = "fa fa-chevron-left"></i></a>
                 </li>
             </c:if>
@@ -102,7 +99,6 @@
             <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
                 <li>
                     <!--변경-->
-                    <%--<a href="boardList?page=${pageNum}"><i class = "fa">${pageNum}</i></a>--%>
                     <a href='<c:url value="/boardList${pageMaker.makeQueryPage(pageNum)}"/>'>${pageNum}</a>
                 </li>
             </c:forEach>
@@ -110,7 +106,6 @@
             <c:if test ="${pageMaker.next && pageMaker.endPage > 0}">
                 <li>
                     <!--변경-->
-                    <%--<a href="boardList?page=${pageMaker.endPage+1}"><i class = "fa fa-chevron-right"></i></a>--%>
                     <a href='<c:url value="/boardList${pageMaker.makeQueryPage(pageMaker.endPage+1)}"/>'><i class="fa fa-chevron-right"></i></a>
                 </li>
             </c:if>

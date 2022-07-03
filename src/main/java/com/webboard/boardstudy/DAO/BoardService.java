@@ -26,6 +26,4 @@ public interface BoardService {
     /*총 게시글 갯수*/
     int countBoardList(SearchCriteria cri) throws Exception;
 
-
-    /*BoardDTO detailBoard(BoardDTO boardDTO) throws Exception;*/
 }
