@@ -41,7 +41,7 @@ public class BoardController {
 
     //게시글 조회
     @RequestMapping("/boardList")
-    public String boardList(Model model, SearchCriteria cri, HttpServletRequest request) throws Exception {
+    public String boardList(Model model, SearchCriteria cri) throws Exception {
 
         //PageMaker() 객체 생성
         PageMaker pageMaker = new PageMaker();
@@ -113,9 +113,8 @@ public class BoardController {
 
     //게시글 수정
     @RequestMapping("/contentForm")
-    public String contentForm(/*@RequestParam("id") String id,*/
-            @ModelAttribute("boardDTO") BoardDTO boardDTO, HttpServletRequest request,
-            Model model, SearchCriteria cri) throws Exception {
+    public String contentForm( @ModelAttribute("boardDTO") BoardDTO boardDTO,
+                               HttpServletRequest request, Model model, SearchCriteria cri) throws Exception {
 
         int id = Integer.parseInt(request.getParameter("id"));
         boardDTO.setId(id);
@@ -135,7 +134,7 @@ public class BoardController {
     //게시글 수정 액션
     @RequestMapping("/updateAction")
     public String updateAction(@ModelAttribute("boardDTO") BoardDTO boardDTO,
-                               HttpServletRequest request, SearchCriteria cri, RedirectAttributes redAttr, Model model) throws Exception {
+                               SearchCriteria cri, RedirectAttributes redAttr, Model model) throws Exception {
 
         // 파일 업로드 처리
         MultipartFile uploadFile = boardDTO.getUploadFile();
@@ -168,14 +167,9 @@ public class BoardController {
 
     //게시글 삭제 액션
     @RequestMapping("/deleteAction")
-    public String deleteAction(@RequestParam("id") String id,
-                               HttpServletRequest request, SearchCriteria cri, RedirectAttributes redAttr) throws Exception{
+    public String deleteAction(@RequestParam("id") String id) throws Exception{
 
         boardService.deleteBoard(id);
-
-        //페이징 정보를 리다이렉트 해준다.
-        /*redAttr.addAttribute("page", cri.getPage());
-        redAttr.addAttribute("perPagNum", cri.getPerPageNum());*/
 
         System.out.println("글 삭제 성공!");
         return "redirect:boardList"; //boardList.jsp로 리다이렉트 됨.
