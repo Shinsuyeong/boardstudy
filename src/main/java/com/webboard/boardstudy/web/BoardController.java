@@ -5,8 +5,6 @@ import com.webboard.boardstudy.DTO.BoardDTO;
 import com.webboard.boardstudy.DTO.PageMaker;
 import com.webboard.boardstudy.DTO.SearchCriteria;
 import org.apache.commons.io.FilenameUtils;
-import org.mybatis.logging.Logger;
-import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,8 +28,6 @@ public class BoardController {
     /*자동으로 bean생성*/
     @Autowired
     BoardService boardService;
-
-    private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
     @RequestMapping("/")
     public String index() {
@@ -85,7 +81,6 @@ public class BoardController {
         //list 얻어왓듯이 서비스 통해 write
         boardService.insertwrite(boardDTO);
 
-        System.out.println("글쓰기 성공!");
         return "redirect:boardList";
 
     }
@@ -154,9 +149,6 @@ public class BoardController {
         redAttr.addAttribute("page", cri.getPage());
         redAttr.addAttribute("perPagNum", cri.getPerPageNum());
 
-        System.out.println("글 수정 성공!");
-
-
         BoardDTO dto = boardService.viewBoard(boardDTO);
         model.addAttribute("result", dto);
 
@@ -171,7 +163,6 @@ public class BoardController {
 
         boardService.deleteBoard(id);
 
-        System.out.println("글 삭제 성공!");
         return "redirect:boardList"; //boardList.jsp로 리다이렉트 됨.
 
     }

@@ -99,20 +99,10 @@
 </body>
 
 <script type="text/javascript">
-    /*$("#btn_previous").click(function javascript_onclikc() {
-
-        $(location).attr('href', '/boardList');
-
-    });*/
-
-   /* $("#filedelete").click(function javascript_onclikc() {
-        $('#filedown').val(null);
-    });*/
-
 
     /*삭제 메시지*/
     function contentform_check(obj) {
-        /*var filedown = document.getElementById("filedown");*/
+
         var actionType = $(obj).data("type");
 
         if(actionType == "Delete") {
